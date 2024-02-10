@@ -1,0 +1,115 @@
+body {
+  background-color: #f9f7fe;
+  font-family: "Roboto", sans-serif;
+}
+
+.weather-app {
+  background: white;
+  max-width: 600px;
+  margin: 45px auto;
+  padding: 30px;
+  box-shadow: 0 30px 50px rgba(65, 50, 100, 0.08);
+  border-radius: 16px;
+}
+
+header {
+  border-bottom: 1px solid #f9f7fe;
+  /* having padding only at the bottom */
+  padding: 0 0 30px 0;
+}
+
+.search-form-input {
+  background-color: #f9f7fe;
+  border: none;
+  border-radius: 6px;
+  /* making the search bar longer */
+  width: 80%;
+  /* making the search bar less skinny */
+  padding: 15px 20px;
+  /* increasing the placeholder font size in the search bar  */
+  font-size: 16px;
+}
+
+.search-form-button {
+  background: #885df1;
+  padding: 15px 30px;
+  border: none;
+  /* adding space between the search bar and the button */
+  margin-left: 5px;
+  border-radius: 6px;
+  color: white;
+  /* making the font size of the 'Search' text on the button bigger to match the font in the search bar */
+  font-size: 16px;
+}
+
+/* styling the main section so that the 2 divs in this sit side by side */
+/* to do this we have to use flexbox */
+.weather-app-data {
+  /* makes the 2 divs sit next to each other */
+  display: flex;
+  /* makes the 2 divs more spaced out inside the flex container */
+  justify-content: space-between;
+}
+
+main {
+  padding: 30px 0;
+}
+
+/* class for the h1 */
+.weather-app-city {
+  /* removing the h1's default margin */
+  margin: 0;
+  font-size: 38px;
+  line-height: 48px;
+}
+
+/* class for the paragraph */
+.weather-app-details {
+  font-size: 16px;
+  line-height: 24px;
+  color: rgba(39, 33, 66, 0.4);
+  font-weight: 500;
+}
+
+/* styling the strong tags inside the paragraph */
+.weather-app-details strong {
+  color: #f65282;
+}
+
+.weather-app-temperature-container {
+  /* makes the flex childs sit next to each other again */
+  display: flex;
+}
+
+.weather-app-icon {
+  /* the emoji is technically a font so can change it with font-size */
+  /* actually he changed it using width and height to match the same as the temperature */
+  width: 88px;
+  height: 88px;
+}
+
+/* the temperature number */
+.weather-app-temperature {
+  font-size: 88px;
+  font-weight: bold;
+  line-height: 88px;
+}
+
+.weather-app-unit {
+  margin-top: 6px;
+  font-size: 28px;
+}
+
+footer {
+  border-top: 1px solid #f9f7fe;
+  /* having padding only at the top */
+  padding: 30px 0 0 0;
+  text-align: center;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+/* making all the links have the same colour as the button */
+a {
+  color: #885df1;
+}

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="src/style.css" />
+    <!-- adding in axios to project so can use API (https://github.com/axios/axios) -->
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+    <title>SheCodes Weather App</title>
+  </head>
+  <body>
+    <!-- wrapping the different sections in a div so that we can make the background of all of that white -->
+    <div class="weather-app">
+      <header>
+        <form class="search-form" id="search-form">
+          <input
+            type="search"
+            placeholder="Enter a city..."
+            required
+            class="search-form-input"
+            id="search-form-input"
+          />
+          <input type="submit" value="Search" class="search-form-button" />
+        </form>
+      </header>
+      <main>
+        <!-- putting the city info and the temp in two separate divs so can put them as 2 different sections and create a block around each of them -->
+        <!-- then need to wrap those 2 divs around a div (here 'weather-app-data') so that we can use flexbox to make those 2 divs sit next to each other -->
+        <div class="weather-app-data">
+          <div>
+            <!-- removing 'Paris' from the h1 so that if we didn't search anything it wouldn't be there - later in js we have it set to london by default when you reload -->
+            <h1 class="weather-app-city" id="city"></h1>
+            <p class="weather-app-details">
+              <span id="time"></span>,
+              <span id="description"></span>
+              <br />
+              Humidity: <strong id="humidity"></strong>, Wind:
+              <strong id="wind-speed"></strong>
+            </p>
+          </div>
+          <!-- adding seperature divs to the temp icon, number and units so we can individually style those and wrapping that
+        in another div so we can use flex box -->
+          <div class="weather-app-temperature-container">
+            <div id="icon"></div>
+            <div class="weather-app-temperature" id="temperature">12</div>
+            <div class="weather-app-unit">°c</div>
+          </div>
+          <div></div>
+        </div>
+      </main>
+      <footer>
+        This project was coded by
+        <a href="https://github.com/mond95" target="_blank">Monica Diep</a>,
+        code hosted on
+        <a
+          href="https://github.com/mond95/shecodes-week7-weatherproject"
+          target="_blank"
+          >Github</a
+        >
+        and website on
+        <a href="https://shecodes-week7-plus.netlify.app/" target="_blank"
+          >Netlify</a
+        >
+      </footer>
+    </div>
+    <script src="src/index.js"></script>
+  </body>
+</html>

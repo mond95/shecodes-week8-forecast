@@ -100,6 +100,42 @@ main {
   font-size: 28px;
 }
 
+/* Forecast styling */
+
+/* container set to flex so all the days sit next to each other rather than as divs on top of each other */
+.weather-forecast {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 30px;
+}
+
+.weather-forecast-date {
+  text-align: center;
+  color: rgba(39, 33, 66, 0.4);
+  font-size: 16px;
+  line-height: 20px;
+  margin-bottom: 10px;
+}
+
+.weather-forecast-icon {
+  font-size: 38px;
+  text-align: center;
+}
+
+/* to make the max and min temp go side by side rather than on top of each other, have to also put this in a flex box */
+.weather-forecast-temperatures {
+  text-align: center;
+  color: #f65282;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+/* adding spacing between the max and min temps */
+.weather-forecast-temperature {
+  padding: 0 10px;
+}
+
 footer {
   border-top: 1px solid #f9f7fe;
   /* having padding only at the top */

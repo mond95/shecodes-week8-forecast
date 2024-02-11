@@ -117,3 +117,62 @@ searchFormElement.addEventListener("submit", handleSearchSubmit);
 
 // when we reload, this will have london by default
 searchCity("London");
+
+// FORECAST
+/* if we used the previous technique of adding id selectors to everything and all the days for the forecast section,
+that would have way too many id's and become very cumbersome selecting everything.
+So we are going to use a more advanced technique here. We are instead going to inject
+all this code from javascript itself. For this we have to learn something called the Javascript templating - the ability to 
+inject really long HTML from our javascript */
+
+// let forecast = document.querySelector("#forecast");
+
+// can't use the double quotes "" as that only lets you put one line in so have to use the back tick syntax ``:
+/* doing the below creates just the one day forecast - we could copy and paste it lots of times like we originally did in the 
+but this creates a lot of hard to maintain code and we don't want to repeat ourselves (DRY - don't repeat yourself) so ideally we
+want to inject this once and then go through a loop to inject this 5 times so we get the forecast for the 5 days */
+// forecast.innerHTML = `
+//           <div class="weather-forecast-day">
+//             <div class="weather-forecast-date">Tue</div>
+//             <div class="weather-forecast-icon">🌤️</div>
+//             <div class="weather-forecast-temperatures">
+//               <div class="weather-forecast-temperature">
+//                 <strong>15º</strong>
+//               </div>
+//               <div class="weather-forecast-temperature">9º</div>
+//             </div>
+//           </div>
+// `;
+
+// instead we will move this into a function so it is easier to maintain
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+
+  // we want to have a loop that adds to it (not just replaces it) but every time it is called it is different
+  // i.e. monday, then tuesday, then wednesday etc
+  // the loop lets us loop through an array and then this array of days or of data will have 5 items
+
+  // first creating a new array called days
+  // this will have dummy data for now but will fix this later when integrating the API
+  let days = ["Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  days.forEach(function (day) {
+    // make sure that you use '+=' for the innerHTML this time not just = so that it will add things from that iteration of the loop
+    // to the previous iteration rather than just replacing it, so you get the 5 days not just the last day of the iteration!
+    // i.e. concatenating a string
+    forecastElement.innerHTML += `
+            <div class="weather-forecast-day">
+              <div class="weather-forecast-date">${day}</div>
+              <div class="weather-forecast-icon">🌤️</div>
+              <div class="weather-forecast-temperatures">
+                <div class="weather-forecast-temperature">
+                  <strong>15º</strong>
+                </div>
+                <div class="weather-forecast-temperature">9º</div>
+              </div>
+            </div>
+  `;
+  });
+}
+
+displayForecast();

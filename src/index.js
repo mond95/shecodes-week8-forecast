@@ -44,6 +44,10 @@ function refreshWeather(response) {
 
   //   moving the class to the image rather than the div
   iconElement.innerHTML = `<img src="${response.data.condition.icon_url}" class="weather-app-icon">`;
+
+  // moving the calling of the forecast function into here, once we've got the city
+  // instead of sending the city that was typed we'll send the city name from the API to prevent spelling/upper/lowercase errors
+  getForecast(response.data.city);
 }
 
 // FUNCTION TO FORMAT THE DATE
@@ -119,6 +123,17 @@ searchFormElement.addEventListener("submit", handleSearchSubmit);
 searchCity("London");
 
 // FORECAST
+
+// function to get the forecast data from the API
+function getForecast(city) {
+  let apiKey = "145at3bd88ddc4bf6od1483d03f4ef43";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
+  // console.log(apiUrl);
+  // to get the information/data object from the URL above into our code, we have to use axios just like with the other API call
+  // below says get the results of the URL and once done then call the displayForecast (which we made earlier)
+  axios(apiUrl).then(displayForecast);
+}
+
 /* if we used the previous technique of adding id selectors to everything and all the days for the forecast section,
 that would have way too many id's and become very cumbersome selecting everything.
 So we are going to use a more advanced technique here. We are instead going to inject
@@ -145,8 +160,8 @@ want to inject this once and then go through a loop to inject this 5 times so we
 // `;
 
 // instead we will move this into a function so it is easier to maintain
-function displayForecast() {
-  let forecastElement = document.querySelector("#forecast");
+function displayForecast(response) {
+  console.log(response);
 
   // we want to have a loop that adds to it (not just replaces it) but every time it is called it is different
   // i.e. monday, then tuesday, then wednesday etc
@@ -155,12 +170,19 @@ function displayForecast() {
   // first creating a new array called days
   // this will have dummy data for now but will fix this later when integrating the API
   let days = ["Tue", "Wed", "Thu", "Fri", "Sat"];
+  // found that if I didn't do it like the below where i set it as an empty string and straight away just did forecastElement.innerHTML+= all that js html template
+  // then because I moved the getForecast function call inside the refreshWeather call, it meant every time i searched for a city, it would add 5 more of the divs with each call
+  // e.g. searching for a place showed 10 forecast divs, doing it again showed 15 divs etc
+  // so doing the below with the empty string resets this every time!
+  let forecastHtml = "";
 
   days.forEach(function (day) {
     // make sure that you use '+=' for the innerHTML this time not just = so that it will add things from that iteration of the loop
     // to the previous iteration rather than just replacing it, so you get the 5 days not just the last day of the iteration!
     // i.e. concatenating a string
-    forecastElement.innerHTML += `
+    forecastHtml =
+      forecastHtml +
+      `
             <div class="weather-forecast-day">
               <div class="weather-forecast-date">${day}</div>
               <div class="weather-forecast-icon">🌤️</div>
@@ -172,7 +194,8 @@ function displayForecast() {
               </div>
             </div>
   `;
+
+    let forecastElement = document.querySelector("#forecast");
+    forecastElement.innerHTML = forecastHtml;
   });
 }
-
-displayForecast();

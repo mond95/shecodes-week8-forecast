@@ -118,8 +118,13 @@ main {
 }
 
 .weather-forecast-icon {
-  font-size: 38px;
-  text-align: center;
+  /* font-size: 38px; */
+  /* changing the size with width instead now that it's an image instead with an actual img tag and src rather than an emoji placeholder */
+  width: 88px;
+  height: 88px;
+  /* centering with display as block and margin 0 auto */
+  display: block;
+  margin: 0 auto;
 }
 
 /* to make the max and min temp go side by side rather than on top of each other, have to also put this in a flex box */
